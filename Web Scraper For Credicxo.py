@@ -7,6 +7,7 @@ import requests
 import json
 import os
 import time
+from Bonus_Task.captcha_solver import get_captcha, resolve_captcha
 
 #### **Small Snippets for collecting data used in between.**
 
@@ -211,10 +212,16 @@ def visit_url(obj, url):
         # to_file(str(obj.id) + '200', r)
         obj.store(*extract(r, obj), url)
 
-    # elif r.status_code == 503:                                      # Status Unauthorized, Captcha is needed to be filled
-    #     # to_file(str(obj.id) + '503', r)
-    #     get_captcha(r)
-    #     print(resolve_captcha("./captcha.jpg"))
+    elif r.status_code == 503:                                      # Status Unauthorized, Captcha is needed to be filled
+        # to_file(str(obj.id) + '503', r)
+        try:
+            get_captcha(r)
+            captcha_ans = resolve_captcha("./captcha.jpg")
+            print(captcha_ans, 0/0)
+            r.post(url, data= {'payload' : captcha_ans} )
+        except Exception as e:
+            print(e)
+            return r
 
     elif r.status_code == 404:                                      # Page not found
         # to_file(str(obj.id) + '404', r)
