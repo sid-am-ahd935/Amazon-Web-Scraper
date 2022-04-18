@@ -1,7 +1,5 @@
-This repo is for Credicxo Python Task 1.
 
-
-# Credicxo-Python-Developer-Task-1
+# Amazon-Web-Scraper-With-Prototype-Captcha-Bypassing
 
 This project was created for submission to Credicxo under Python Developer Task 1. This project is made using built in python libraries and modules mainly handling the functionalities like transferring data to and from JSON files, reading the CSV file, visiting the urls and scraping the data, etc.
 
